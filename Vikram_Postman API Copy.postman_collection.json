@@ -1,0 +1,782 @@
+{
+	"info": {
+		"_postman_id": "269f22e2-d189-40bb-a3b0-301314680f49",
+		"name": "Vikram_Postman API Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20630661"
+	},
+	"item": [
+		{
+			"name": "TestingWorldAPI testing",
+			"item": [
+				{
+					"name": "Get Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.$.first_name).to.eql(vikram);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_001 Create",
+			"item": [
+				{
+					"name": "Add new student ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"vikram\");\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Content-Length is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Length\");\r",
+									"});\r",
+									"pm.test(\"validating server header\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"first_name\": \"vikram\",\r\n    \"middle_name\": \"b\",\r\n    \"last_name\": \"balasubramanian\",\r\n    \"date_of_birth\": \"22/05/1990\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						},
+						"description": "Adding new student"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_002 Update",
+			"item": [
+				{
+					"name": "Post Request &Validating JSON Body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Validate response msg\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"Add  data success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Permanent_Address\": {\r\n    \"House_Number\": \"300/3\",\r\n    \"City\": \"salem\",\r\n    \"State\": \"Tamil nadu\",\r\n    \"Country\": \"India\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"123\",\r\n        \"Home\": \"456\",\r\n        \"Mobile\": \"9876535262\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"35356\",\r\n        \"Home\": \"9262662\",\r\n        \"Mobile\": \"2257738398289\"\r\n      }\r\n    ]\r\n  },\r\n  \"Current_Address\": {\r\n    \"House_Number\": \"172/1\",\r\n    \"City\": \"salem\",\r\n    \"State\": \"Tamil nadu\",\r\n    \"Country\": \"India\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"04290\",\r\n        \"Home\": \"2452424\",\r\n        \"Mobile\": \"73628228937\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"53781\",\r\n        \"Home\": \"612712\",\r\n        \"Mobile\": \"862372522\"\r\n      }\r\n    ]\r\n  },\r\n  \"stId\": \"2672145\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/addresses",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT_Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"vikram\");\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Content-Length is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Length\");\r",
+									"});\r",
+									"pm.test(\"validating server header\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\": 2672145,\r\n   \"first_name\": \"VIKRAM\",\r\n    \"middle_name\": \"b\",\r\n    \"last_name\": \"balasubramanian\",\r\n    \"date_of_birth\": \"22/05/1990\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails/2672145",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails",
+								"2672145"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_003 Delete",
+			"item": [
+				{
+					"name": "Delete_Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n   \"first_name\": \"vikram b\",\r\n    \"middle_name\": \"bala\",\r\n    \"last_name\": \"balasubramanian v\",\r\n    \"date_of_birth\": \"22/05/1990*\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails/2672111",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails",
+								"2672111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://thetestingworldapi.com/api/addresses/54231455",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.Permanent_Address.House_Number).to.eql(\"300/3\");\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.Permanent_Address.PhoneNumber[0].Std_Code).to.eql(\"04290\");\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.stId).to.eql(\"54231455\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/addresses/54231455",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"54231455"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://thetestingworldapi.com/api/studentsDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n  \"first_name\": \"vikram\",\r\n  \"middle_name\": \"b\",\r\n  \"last_name\": \"balasubramanian v\",\r\n  \"date_of_birth\": \"22/05/1990\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_004 Negative Test Cases",
+			"item": [
+				{
+					"name": "Invalid Json body(Bad Request)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"first_name\": \"vikram\",\r\n    \"middle_name\": \"b\",\r\n    \"last_name\": \"balasubramanian\",\r\n    \"date_of_birth\": \"22/05/1990\"\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_005 READ",
+			"item": [
+				{
+					"name": "Get Request& Validating Complex JSON response body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Validating JSON Response_last name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.last_name).to.eql(\"balasubramanian v\");\r",
+									"pm.test(\"Validating JSON Response_City\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.Address[0].Permanent_Address.City).to.eql(\"salem\");\r",
+									"pm.test(\"Validating JSON Response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.Address[0].stId).to.eql(\"2672145\");\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.Address[1].Permanent_Address.PhoneNumber[1].Mobile).to.eql(\"862372522\");\r",
+									"});\r",
+									"});\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/FinalStudentDetails/2672145",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"FinalStudentDetails",
+								"2672145"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Header value Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Server is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"    });\r",
+									"    pm.test(\"Status code name has string\", function () {\r",
+									"        pm.response.to.have.status(\"OK\");\r",
+									"        });\r",
+									"pm.test(\"Header Validation\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+									"});\r",
+									"pm.test(\"Header Validation\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/FinalStudentDetails/2672145",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"FinalStudentDetails",
+								"2672145"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.$.first_name).to.eql(vikram);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postrequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"vikram\");\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Length is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
+							"});\r",
+							"pm.test(\"validating server header\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"first_name\": \"vikram\",\r\n    \"middle_name\": \"b\",\r\n    \"last_name\": \"balasubramanian\",\r\n    \"date_of_birth\": \"22/05/1990\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putrequest",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2672111,\r\n   \"first_name\": \"vikram b\",\r\n    \"middle_name\": \"b\",\r\n    \"last_name\": \"balasubramanian v\",\r\n    \"date_of_birth\": \"22/05/1990*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails/2672111",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"2672111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://thetestingworldapi.com/api/studentsDetails/2672111",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n   \"first_name\": \"vikram b\",\r\n    \"middle_name\": \"bala\",\r\n    \"last_name\": \"balasubramanian v\",\r\n    \"date_of_birth\": \"22/05/1990*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails/2672111",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"2672111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Request &Validating JSON Body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validate response msg\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.msg).to.eql(\"Add  data success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Permanent_Address\": {\r\n    \"House_Number\": \"300/3\",\r\n    \"City\": \"salem\",\r\n    \"State\": \"Tamil nadu\",\r\n    \"Country\": \"India\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"123\",\r\n        \"Home\": \"456\",\r\n        \"Mobile\": \"9876535262\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"35356\",\r\n        \"Home\": \"9262662\",\r\n        \"Mobile\": \"2257738398289\"\r\n      }\r\n    ]\r\n  },\r\n  \"Current_Address\": {\r\n    \"House_Number\": \"172/1\",\r\n    \"City\": \"salem\",\r\n    \"State\": \"Tamil nadu\",\r\n    \"Country\": \"India\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"04290\",\r\n        \"Home\": \"2452424\",\r\n        \"Mobile\": \"73628228937\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"53781\",\r\n        \"Home\": \"612712\",\r\n        \"Mobile\": \"862372522\"\r\n      }\r\n    ]\r\n  },\r\n  \"stId\": \"2672145\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/addresses",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Request& Validating Complex JSON response body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validating JSON Response_last name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.last_name).to.eql(\"balasubramanian v\");\r",
+							"pm.test(\"Validating JSON Response_City\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.Address[0].Permanent_Address.City).to.eql(\"salem\");\r",
+							"pm.test(\"Validating JSON Response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.Address[0].stId).to.eql(\"2672145\");\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.Address[1].Permanent_Address.PhoneNumber[1].Mobile).to.eql(\"862372522\");\r",
+							"});\r",
+							"});\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/FinalStudentDetails/2672145",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"FinalStudentDetails",
+						"2672145"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Header value Validation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"status\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"   \r",
+							"pm.test(\"Server is present\", function () {\r",
+							"    pm.response.to.have.header(\"Server\");\r",
+							"    });\r",
+							"    pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"        });\r",
+							"pm.test(\"Header Validation\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+							"});\r",
+							"pm.test(\"Header Validation\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");\r",
+							"    });\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/FinalStudentDetails/2672145",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"FinalStudentDetails",
+						"2672145"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
